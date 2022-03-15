@@ -72,22 +72,22 @@ def assemble_svgs():
         flower = choices(flowers, material_weights)[0]
         lowres_flower = Path(flower)
         lowres_flower = str(Path(lowres_flower.parent /
-                                 ("_lowres_" + lowres_flower.name)))
+                                 ("_thumbnail_" + lowres_flower.name)))
 
         background = choices(backgrounds, background_weights)[0]
         lowres_background = Path(background)
         lowres_background = str(Path(lowres_background.parent /
-                                     ("_lowres_" + lowres_background.name)))
+                                     ("_thumbnail_" + lowres_background.name)))
 
         coin = choices(coins, material_weights)[0]
         lowres_coin = Path(coin)
         lowres_coin = str(Path(lowres_coin.parent /
-                               ("_lowres_" + lowres_coin.name)))
+                               ("_thumbnail_" + lowres_coin.name)))
 
         grave = choices(graves, grave_weights)[0]
         lowres_grave = Path(grave)
         lowres_grave = str(Path(lowres_grave.parent /
-                                ("_lowres_" + lowres_grave.name)))
+                                ("_thumbnail_" + lowres_grave.name)))
 
         add_assets(
             soup,
@@ -119,7 +119,7 @@ def assemble_svgs():
 
         with Path("../assets/"+str(i+1)+".svg").open('w') as random_svg:
             random_svg.write(str(soups[0]))
-        with Path("../assets/"+str(i+1)+"_low.svg").open('w') as random_svg_low:
+        with Path("../assets/"+str(i+1)+"_thumbnail.svg").open('w') as random_svg_low:
             random_svg_low.write(str(soups[1]))
 
         btcflower.append(
