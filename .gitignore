@@ -4,3 +4,4 @@ assets
 mint
 mint.zip
 identity.pem
+__pycache__
