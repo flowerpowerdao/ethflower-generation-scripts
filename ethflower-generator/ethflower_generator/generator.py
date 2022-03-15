@@ -1,4 +1,3 @@
-import re
 from bs4 import BeautifulSoup
 from pathlib import Path
 from random import choices
