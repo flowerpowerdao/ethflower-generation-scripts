@@ -1,7 +1,6 @@
 assets
 .dfx
 .DS_Store
-btcflower.csv
 mint
 mint.zip
 identity.pem
