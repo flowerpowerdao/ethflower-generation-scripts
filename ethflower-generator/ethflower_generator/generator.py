@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 from random import choices
 from ethflower_generator.utils import calculate_weights, get_filenames, add_assets, add_petal_animation, get_trait
+from ethflower_generator.oracle import add_oracle
 import json
 import csv
 
@@ -94,16 +95,22 @@ def assemble_svgs():
             flower,
             background,
             coin,
-            grave
+            grave,
+            "https://cdfps-iyaaa-aaaae-qabta-cai.raw.ic0.app/"
         )
+
+        add_oracle(soup)
 
         add_assets(
             lowres_soup,
             lowres_flower,
             lowres_background,
             lowres_coin,
-            lowres_grave
+            lowres_grave,
+            "https://cdfps-iyaaa-aaaae-qabta-cai.raw.ic0.app/"
         )
+
+        add_oracle(lowres_soup)
 
         soups = add_petal_animation(
             [soup, lowres_soup])

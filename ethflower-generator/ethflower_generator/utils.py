@@ -26,20 +26,21 @@ def get_filenames(path, exclude_list: List[str]):
     return relative_filenames
 
 
-def add_assets(soup, flower, background, coin, grave):
+def add_assets(soup, flower, background, coin, grave, asset_canister):
     """Changes the layers of the template svg file"""
 
     # insert flower
-    soup.find('image', {"id": "flower"})['href'] = flower
+    soup.find('image', {"id": "flower"})['href'] = asset_canister + flower
 
     # insert background
-    soup.find('image', {"id": "background"})['href'] = background
+    soup.find('image', {"id": "background"})[
+        'href'] = asset_canister + background
 
     # insert coin
-    soup.find('image', {"id": "coin"})['href'] = coin
+    soup.find('image', {"id": "coin"})['href'] = asset_canister + coin
 
     # insert grave
-    soup.find('image', {"id": "grave"})['href'] = grave
+    soup.find('image', {"id": "grave"})['href'] = asset_canister + grave
 
 
 def add_petal_animation(soups: list):
