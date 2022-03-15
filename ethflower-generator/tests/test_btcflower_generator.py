@@ -1,4 +1,4 @@
-from btcflower_generator import __version__
+from ethflower_generator import __version__
 
 
 def test_version():
