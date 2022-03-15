@@ -42,11 +42,10 @@ grave_weights = calculate_weights(material_weights, symbol_weights)
 
 
 def assemble_svgs():
-    # delete json if it exists
-    Path("btcflower.json").unlink(missing_ok=True)
+    """assemble the svgs for the collection"""
 
-    # get all the relative filenames for the different layers
-    # specify substrings in exclude_list to exclude certain files
+    # get all the relative filenames for the different layers.
+    # specify substrings in exclude_list to exclude certain files by substrings
     flowers = get_filenames("../assets/flowers",
                             exclude_list=["lowres", "thumbnail"])
     backgrounds = get_filenames(
@@ -71,24 +70,22 @@ def assemble_svgs():
 
     for i in range(2015):
         flower = choices(flowers, material_weights)[0]
-        lowres_flower = Path(flower)
-        lowres_flower = str(Path(lowres_flower.parent /
-                                 ("_thumbnail_" + lowres_flower.name)))
+        # this also creates a thumbnail version of the NFT.
+        # add the assets to the folders accordingly!
+        lowres_flower = flower[:flower.find(
+            "/")+1] + "_thumbnail_" + flower[flower.find("/")+1:]
 
         background = choices(backgrounds, background_weights)[0]
-        lowres_background = Path(background)
-        lowres_background = str(Path(lowres_background.parent /
-                                     ("_thumbnail_" + lowres_background.name)))
+        lowres_background = background[:background.find(
+            "/")+1] + "_thumbnail_" + background[background.find("/")+1:]
 
         coin = choices(coins, material_weights)[0]
-        lowres_coin = Path(coin)
-        lowres_coin = str(Path(lowres_coin.parent /
-                               ("_thumbnail_" + lowres_coin.name)))
+        lowres_coin = coin[:coin.find("/")+1] + \
+            "_thumbnail_" + coin[coin.find("/")+1:]
 
         grave = choices(graves, grave_weights)[0]
-        lowres_grave = Path(grave)
-        lowres_grave = str(Path(lowres_grave.parent /
-                                ("_thumbnail_" + lowres_grave.name)))
+        lowres_grave = grave[:grave.find(
+            "/")+1] + "_thumbnail_" + grave[grave.find("/")+1:]
 
         add_assets(
             soup,
