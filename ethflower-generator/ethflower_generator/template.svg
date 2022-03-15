@@ -9,7 +9,7 @@
          x="0px" y="0px" viewBox="0 0 1240 1754" style="enable-background:new 0 0 1240 1754;" xml:space="preserve">
          <style type="text/css">
             .st0 {
-               fill: #02FC02;
+               fill: #00FD0;
             }
 
             /* The animation code */
@@ -302,7 +302,7 @@
          </defs>
          <style type="text/css">
             .st3 {
-               fill: #7AFF2C;
+               fill: #D6FF9C;
                filter: url(#f1)
             }
          </style>
