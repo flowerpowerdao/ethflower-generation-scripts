@@ -90,3 +90,11 @@ def get_trait(s):
         return s[start:end]
     except ValueError:
         return ""
+
+
+def check_for_triples(triples_data, materials, flower, coin, grave):
+    """Checks if the flower, coin and grave have the same trait and if increases the count of that trait"""
+
+    for index, material in enumerate(materials):
+        if material in flower and material in coin and material in grave:
+            triples_data[index] += 1

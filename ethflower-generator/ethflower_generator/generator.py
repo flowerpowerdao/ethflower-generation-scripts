@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 from pathlib import Path
 from random import choices
-from ethflower_generator.utils import calculate_weights, get_filenames, add_assets, add_petal_animation, get_trait
+from ethflower_generator.utils import calculate_weights, check_for_triples, get_filenames, add_assets, add_petal_animation, get_trait
 from ethflower_generator.oracle import add_oracle
+from ethflower_generator.plot import plot_bar
 import json
 import csv
 
@@ -37,6 +38,16 @@ background_weights = [
     0.40  # white
 ]
 
+materials = [
+    "acrylic",
+    "gold",
+    "diamond",
+    "silver",
+    "bronze",
+    "marble",
+    "chrome",
+    "ceramic",
+]
 
 grave_weights = calculate_weights(material_weights, symbol_weights)
 
@@ -67,6 +78,8 @@ def assemble_svgs():
         lowres_soup = BeautifulSoup(svg_template, 'xml')
 
     btcflower = []
+
+    triples_data = [0, 0, 0, 0, 0, 0, 0, 0]
 
     for i in range(2015):
         flower = choices(flowers, material_weights)[0]
@@ -112,14 +125,7 @@ def assemble_svgs():
         soups = add_petal_animation(
             [soup, lowres_soup])
 
-        if "gold" in flower and "gold" in coin and "gold" in grave:
-            print("triple gold")
-
-        if "acrylic" in flower and "acrylic" in coin and "acrylic" in grave:
-            print("triple acrylic")
-
-        if "diamond" in flower and "diamond" in coin and "diamond" in grave:
-            print("triple diamond")
+        check_for_triples(triples_data, materials, flower, coin, grave)
 
         with Path("../assets/"+str(i+1)+".svg").open('w') as random_svg:
             random_svg.write(str(soups[0]))
@@ -146,3 +152,6 @@ def assemble_svgs():
         for entry in btcflower:
             spamwriter.writerow(
                 [entry["mint_number"], entry["background"], entry["flower"], entry["coin"], entry["grave"]])
+
+    plot_bar(triples_data, materials, "materials",
+             "count", "ethflower", "triple_distribution")
