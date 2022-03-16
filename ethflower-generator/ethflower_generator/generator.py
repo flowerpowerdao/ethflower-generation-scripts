@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from pathlib import Path
 from random import choices
-from ethflower_generator.utils import calculate_weights, check_for_triples, get_filenames, add_assets, add_petal_animation, get_trait
+from ethflower_generator.utils import calculate_weights, check_for_triples, get_filenames, add_assets, add_petal_animation, get_trait, print_progress_bar
 from ethflower_generator.oracle import add_oracle
 from ethflower_generator.plot import plot_bar
 import json
@@ -82,6 +82,9 @@ def assemble_svgs():
     triples_data = [0, 0, 0, 0, 0, 0, 0, 0]
 
     for i in range(2015):
+
+        print_progress_bar(i, 2015, "Progress", "Complete")
+
         flower = choices(flowers, material_weights)[0]
         # this also creates a thumbnail version of the NFT.
         # add the assets to the folders accordingly!

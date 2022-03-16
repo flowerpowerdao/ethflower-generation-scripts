@@ -15,4 +15,5 @@ def plot_bar(data, labels, x_label, y_label, title, file_name):
 
     # save plot
     fig.savefig(file_name)
+    plt.show()
     plt.close(fig)
