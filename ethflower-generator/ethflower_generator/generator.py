@@ -77,6 +77,10 @@ def assemble_svgs():
     with template.open() as svg_template:
         lowres_soup = BeautifulSoup(svg_template, 'xml')
 
+    # the oracle code has to be added to the template only once
+    add_oracle(soup)
+    add_oracle(lowres_soup)
+
     btcflower = []
 
     triples_data = [0, 0, 0, 0, 0, 0, 0, 0]
@@ -112,8 +116,6 @@ def assemble_svgs():
             "https://cdfps-iyaaa-aaaae-qabta-cai.raw.ic0.app/"
         )
 
-        add_oracle(soup)
-
         add_assets(
             lowres_soup,
             lowres_flower,
@@ -122,8 +124,6 @@ def assemble_svgs():
             lowres_grave,
             "https://cdfps-iyaaa-aaaae-qabta-cai.raw.ic0.app/"
         )
-
-        add_oracle(lowres_soup)
 
         soups = add_petal_animation(
             [soup, lowres_soup])
