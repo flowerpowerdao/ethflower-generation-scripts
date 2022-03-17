@@ -158,3 +158,7 @@ def assemble_svgs():
 
     plot_bar(triples_data, materials, "materials",
              "count", "ethflower", "triple_distribution")
+
+
+def stop_mint():
+    print("you already minted")

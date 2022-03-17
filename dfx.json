@@ -1,6 +1,6 @@
 {
     "canisters": {
-        "btcflower_assets": {
+        "ethflower_assets": {
             "source": ["assets"],
             "type": "assets"
         }
